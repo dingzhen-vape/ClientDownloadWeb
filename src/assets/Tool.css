@@ -1,3 +1,50 @@
-.Meteor img{
+body{
+    background: #e7e7e7;
+}
+.base{
+    overflow: hidden;
+    border-radius: 20px;
+    position: absolute;
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 95%;
+    height: 95%;
+    background: #e8f7f7;
+    box-shadow: -10px -10px 20px rgba(255, 255, 255, 1);
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
+}
+.Meteor{
+    position: absolute;
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+.Wurst{
+    position: absolute;
+    float: right;
+    width: 50%;
+    height: 100%;
+}
+.Meteor .icon{
     width: 100px;
+}
+.Wurst .icon{
+    width: 400px;
+    /* float: right; */
+}
+.Refresh{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 50px;
+    background: #aae3fd;
+
+}.Refresh h1{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-30%,-55%);
 }

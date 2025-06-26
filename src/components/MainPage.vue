@@ -1,13 +1,22 @@
 <script>
-
+import Meteor from './Meteor.vue';
+import Wurst from './WurstCN.vue';
+export default{
+    components: {
+        Meteor,
+        Wurst,
+    }
+}
 </script>
 <template>
     <!-- 中间 -->
-    <div class="main">
-        <div class="Meteor">
-            <img src="../assets/MeteorIcon.png" alt="">
+    <div class="base">
+        <div class="main">
+            <Meteor></Meteor>
+            <div class="Refresh">
+                <h1>刷新</h1>
+            </div>
+            <Wurst></Wurst>
         </div>
-        <div class="Refresh"></div>
-        <div class="WurstCN"></div>
     </div>
 </template>
