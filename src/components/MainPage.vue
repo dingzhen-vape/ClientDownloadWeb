@@ -1,13 +1,13 @@
 <script>
 import Meteor from './Meteor.vue';
 import Wurst from './WurstCN.vue';
-export default{
+export default {
     components: {
         Meteor,
         Wurst,
     },
-    methods:{
-        refresh(){
+    methods: {
+        refresh() {
             alert('yes')
         }
     }
@@ -18,7 +18,6 @@ export default{
     <div class="base">
         <div class="main">
             <Meteor></Meteor>
-
             <Wurst></Wurst>
             <div class="Refresh" @click="refresh">
                 <div class="title">

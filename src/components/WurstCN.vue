@@ -1,7 +1,9 @@
 <template>
-    <div class="Wurst">
-        <div class="icon">
-            <img class="icon" src="../assets/Wurst.png" alt="">
+    <div class="WurstBase">
+        <div class="Wurst">
+            <div id="Wursticon">
+                <img src="../assets/Wurst.png" alt="">
+            </div>
         </div>
     </div>
 </template>
