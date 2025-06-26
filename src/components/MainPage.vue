@@ -5,6 +5,11 @@ export default{
     components: {
         Meteor,
         Wurst,
+    },
+    methods:{
+        refresh(){
+            alert('yes')
+        }
     }
 }
 </script>
@@ -13,10 +18,13 @@ export default{
     <div class="base">
         <div class="main">
             <Meteor></Meteor>
-            <div class="Refresh">
-                <h1>刷新</h1>
-            </div>
+
             <Wurst></Wurst>
+            <div class="Refresh" @click="refresh">
+                <div class="title">
+                    <h1>刷新</h1>
+                </div>
+            </div>
         </div>
     </div>
 </template>
