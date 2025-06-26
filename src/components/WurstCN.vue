@@ -27,8 +27,9 @@ export default {
             })
             gsap.to(".Refresh", {
                 opacity: "1",
-                visibility: "visible",
-                duration: 0.3
+                duration: 0.3,
+                ease: "power2"
+
             })
             gsap.to(".Meteor-icon", {
                 opacity: 1,
@@ -49,6 +50,7 @@ export default {
                 }
             })
             document.querySelector(".Meteor-icon").style.pointerEvents = "auto";
+            document.querySelector(".Refresh").style.pointerEvents = "auto";
 
         },
         Onclick() {
@@ -69,12 +71,11 @@ export default {
                 left: "50%",
                 duration: 1,
                 ease: "power2",
-                clearProps: "transform",
             })
             gsap.to(".Refresh", {
                 opacity: "0",
-                visibility: "hidden",
-                duration: 3
+                duration: 0.3,
+                ease: "power2"
             })
             gsap.to(".Meteor-icon", {
                 opacity: 0,
@@ -92,10 +93,7 @@ export default {
                 ease: "power2"
             })
             document.querySelector(".Meteor-icon").style.pointerEvents = "none";
-
-            // document.getElementsByClassName("Refresh")[0].style.visibility = "hidden";
-            // document.querySelector(".Wurst-icon").style.opacity = 0;
-            // document.querySelector(".Refresh").style.opacity = 0;
+            document.querySelector(".Refresh").style.pointerEvents = "none";
 
         }
     }
@@ -109,7 +107,7 @@ export default {
             </div>
         </div>
     </div>
-    <div class="Button WurstBack" v-show="isShow" @click="Reset" style="visibility: hidden; opacity: 0;">
+    <div class="Button WurstBack" @click="Reset" style="visibility: hidden; opacity: 0;">
         <div class="title">
             <h1>返回</h1>
         </div>
