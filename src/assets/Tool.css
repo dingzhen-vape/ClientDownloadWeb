@@ -13,6 +13,18 @@ body{
     box-shadow: -10px -10px 20px rgba(255, 255, 255, 1);
     box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
 }
+.main{
+    overflow: hidden;
+    border-radius: 20px;
+    position: absolute;
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 95%;
+    height: 95%;
+    background: #e8f7f7;
+    box-shadow: -10px -10px 20px rgba(255, 255, 255, 1);
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
+}
 .Meteor{
     position: absolute;
     float: left;
