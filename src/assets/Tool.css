@@ -79,13 +79,6 @@ body{
     backdrop-filter:blur(3px);
     
 }
-.Refresh:hover::before{
-    position: absolute;
-    content: "";
-    width: 1000vw;
-    height: 1000vw;
-    background: #000;
-}
 .Refresh:hover{
     box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.466);
     transform:translate(-50%,-50%) translateY(-5px);
