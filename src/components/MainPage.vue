@@ -19,7 +19,7 @@ export default {
         <div class="main">
             <Meteor></Meteor>
             <Wurst></Wurst>
-            <div class="Refresh" @click="refresh">
+            <div class="Button Refresh" @click="refresh">
                 <div class="title">
                     <h1>刷新</h1>
                 </div>
