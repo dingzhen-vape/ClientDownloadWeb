@@ -164,8 +164,8 @@ export default {
                 ease: "sine"
             })
         },
-        showInfo(){
-            sendMessage("本网站仅供学习使用，网站代码与客户端均已开源!",5000)
+        showInfo() {
+            sendMessage("本网站仅供学习使用，网站代码与客户端均已开源!", 5000)
         }
     },
     mounted() {
@@ -182,17 +182,26 @@ export default {
         <div class="main">
             <Meteor>
                 <ul class="VerList MeteorVerList">
-                    <li class="li1" v-for="(version, index) in MeteorVerList" :key="index">
-                        <a :href="version.browser_download_url" target="_blank">{{ version.name }}</a>
-                        <p>大小:{{ (version.size/(1024 * 1024)).toFixed(2) }}MB 最近更新时间:{{ version.updated_at }} 下载次数:{{ version.download_count }}</p>
+                    <li v-for="(version, index) in MeteorVerList" :key="index">
+                        <div class="detail">
+                            <a :href="version.browser_download_url" target="_blank">{{ version.name }}</a>
+                            <p>大小:{{ (version.size / (1024 * 1024)).toFixed(2) }}MB 最近更新时间:{{ version.updated_at }}
+                                下载次数:{{ version.download_count }}</p>
+                        </div>
+
                     </li>
                 </ul>
             </Meteor>
             <Wurst>
                 <ul class="VerList WurstVerList">
-                    <li class="li2" v-for="(version, index) in WurstVerList" :key="index">
-                        <a :href="version.browser_download_url" target="_blank">{{ version.name }}</a>
-                        <p>大小:{{ (version.size/(1024 * 1024)).toFixed(2) }}MB 最近更新时间:{{ version.updated_at }} 下载次数:{{ version.download_count }}</p>
+                    <li v-for="(version, index) in WurstVerList" :key="index">
+                        <div class="detail">
+                            <a :href="version.browser_download_url" target="_blank">{{ version.name }}</a>
+                            <p>大小:{{ (version.size / (1024 * 1024)).toFixed(2) }}MB 最近更新时间:{{ version.updated_at }}
+                                下载次数:{{
+                                    version.download_count }}</p>
+                        </div>
+
                     </li>
                 </ul>
             </Wurst>
@@ -210,11 +219,15 @@ export default {
                         <a title="当前网站Github仓库" href="https://github.com/dingzhen-vape/ClientDownloadWeb">
                             <img src="../assets/Github.svg" alt="">
                         </a>
-
                     </li>
                     <li>
                         <a title="b站主页" href="https://space.bilibili.com/432060575?spm_id_from=333.1007.0.0">
                             <img src="../assets/-bilibili.svg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a title="爱发电" href="https://afdian.com/a/WurstCN-client?tab=home">
+                            <img style="opacity: 1;" src="../assets/aifadian.svg" alt="">
                         </a>
                     </li>
                     <li>

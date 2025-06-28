@@ -173,7 +173,7 @@ body {
   background-color: #a670cd00;
 }
 .MeteorVerList::-webkit-scrollbar-thumb {
-  background-color: #a65eda4c;
+  background-color: #a65eda;
   border-radius: 5px; /* 滑块的圆角 */
 }
 .WurstVerList {
@@ -229,4 +229,9 @@ body {
   top: 0;
   left: 1vw;
   border-radius: 2vw;
+}
+.detail{
+  padding: 10px;
+  border-radius: 0.5vw;
+  border:5px solid #0000001e;
 }
