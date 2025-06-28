@@ -2,9 +2,7 @@
 import gsap from "gsap";
 export function sendMessage(value = "",delay = 1000){
     document.querySelector(".Message p").innerHTML = value;
-    gsap.fromTo(".Message",{
-        right: "-100%",
-    },{
+    gsap.to(".Message",{
         right: 0,
         duration: 2,
         ease: "power2",
@@ -13,7 +11,7 @@ export function sendMessage(value = "",delay = 1000){
                 gsap.to(".Message",{
                     right: "-100%",
                     duration: 2,
-                    ease:"power2"
+                    ease:"sine"
                 })
             },delay)
         }

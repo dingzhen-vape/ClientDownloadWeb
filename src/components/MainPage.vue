@@ -9,7 +9,7 @@ export default {
         return {
             MeteorVerList: [],
             WurstVerList: [],
-            LastTime:0
+            LastTime: 0
         }
     },
     components: {
@@ -29,7 +29,7 @@ export default {
                 this.LastTime = LastTime
             } else {
                 sendMessage("未在本地查找到已经存储的数据，正在获取...")
-                setTimeout(this.refresh,1000)
+                setTimeout(this.refresh, 1000)
             }
         },
 
@@ -42,6 +42,7 @@ export default {
                 // 获取版本资源列表
                 this.MeteorVerList = (await this.getVersion("MeteorCN")).data.assets;
                 this.WurstVerList = (await this.getVersion("WurstCN")).data.assets;
+                this.LastTime = new Date().toLocaleString()
                 // console.log(MeteorVerList);
 
                 //存储版本资源列表到本地缓存
@@ -51,37 +52,11 @@ export default {
                     Wurst: this.WurstVerList
                 }
                 localStorage.setItem("Versions", JSON.stringify(Versions))
-                
-
-                gsap.fromTo(".MeteorVerList", {
-                    opacity: 0,
-                    left: "-100%",
-                    duration: 1,
-                    ease: "power2"
-                }, {
-                    opacity: 1,
-                    left: "0%",
-                    duration: 1,
-                    ease: "power2",
-                })
-                gsap.fromTo(".WurstVerList", {
-                    opacity: 0,
-                    right: "-100%",
-                    duration: 1,
-                    ease: "power2"
-                }, {
-                    opacity: 1,
-                    right: "0%",
-                    duration: 1,
-                    ease: "power2",
-                    onComplete: () => {
-                        setTimeout(this.outAnimations(), 1000)
-                    }
-                })
-                sendMessage("获取资源成功✌️")
+                this.listOutAnimation()
+                sendMessage("获取资源成功")
 
             } catch (error) {
-                sendMessage(`获取失败了QAQ,报错信息:${error}`,1000)
+                sendMessage(`获取失败了QAQ,报错信息:${error}`, 1000)
                 this.outAnimations()
 
             }
@@ -91,6 +66,33 @@ export default {
             return await axios.get(`https://api.github.com/repos/dingzhen-vape/${name}/releases/tags/ATV`)
         },
 
+        listOutAnimation() {
+            gsap.fromTo(".MeteorVerList", {
+                opacity: 0,
+                left: "-100%",
+                duration: 1,
+                ease: "power2"
+            }, {
+                opacity: 1,
+                left: "0%",
+                duration: 1,
+                ease: "power2",
+            })
+            gsap.fromTo(".WurstVerList", {
+                opacity: 0,
+                right: "-100%",
+                duration: 1,
+                ease: "power2"
+            }, {
+                opacity: 1,
+                right: "0%",
+                duration: 1,
+                ease: "power2",
+                onComplete: () => {
+                    setTimeout(this.outAnimations(), 1000)
+                }
+            })
+        },
         inAnimations() {
             document.querySelector(".Refresh h1").innerHTML = "刷新中...";
             gsap.to(".Refresh", {
@@ -149,28 +151,21 @@ export default {
                 duration: 1,
                 ease: "power2",
             })
-            gsap.fromTo(".WurstVerList", {
-                opacity: 1,
-                right: "0%",
-                duration: 1,
-                ease: "power2"
-            }, {
+            gsap.to(".WurstVerList", {
                 opacity: 0,
                 right: "-100%",
                 duration: 1,
                 ease: "sine"
             })
-            gsap.fromTo(".MeteorVerList", {
-                opacity: 1,
-                left: "0%",
-                duration: 1,
-                ease: "power2"
-            }, {
+            gsap.to(".MeteorVerList", {
                 opacity: 0,
                 left: "-100%",
                 duration: 1,
                 ease: "sine"
             })
+        },
+        showInfo(){
+            sendMessage("本网站仅供学习使用，网站代码与客户端均已开源!",5000)
         }
     },
     mounted() {
@@ -184,7 +179,6 @@ export default {
     </div>
     <!-- 中间 -->
     <div class="base">
-
         <div class="main">
             <Meteor>
                 <ul class="VerList MeteorVerList">
@@ -204,6 +198,27 @@ export default {
                 <div class="title">
                     <h1>刷新</h1>
                 </div>
+            </div>
+            <div class="info">
+                <ul class="infoList">
+                    <li>
+                        <img title="Info" @click="showInfo" src="../assets/感叹号02.svg">
+                    </li>
+                    <li>
+                        <a title="当前网站Github仓库" href="https://github.com/dingzhen-vape/ClientDownloadWeb">
+                            <img src="../assets/Github.svg" alt="">
+                        </a>
+
+                    </li>
+                    <li>
+                        <a title="b站主页" href="https://space.bilibili.com/432060575?spm_id_from=333.1007.0.0">
+                            <img src="../assets/-bilibili.svg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <h1 style="font-size: 20px">上次更新时间:{{ LastTime }}</h1>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
