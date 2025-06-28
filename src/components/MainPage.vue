@@ -165,7 +165,8 @@ export default {
             })
         },
         showInfo() {
-            sendMessage("本网站仅供学习使用，网站代码与客户端均已开源!", 5000)
+            sendMessage("本网站仅供学习使用，网站代码与客户端均已开源!"+
+            "因为所有链接都是github直连所以速度有点慢", 5000)
         }
     },
     mounted() {
