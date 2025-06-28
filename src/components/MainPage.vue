@@ -184,6 +184,7 @@ export default {
                 <ul class="VerList MeteorVerList">
                     <li class="li1" v-for="(version, index) in MeteorVerList" :key="index">
                         <a :href="version.browser_download_url" target="_blank">{{ version.name }}</a>
+                        <p>大小:{{ (version.size/(1024 * 1024)).toFixed(2) }}MB 最近更新时间:{{ version.updated_at }} 下载次数:{{ version.download_count }}</p>
                     </li>
                 </ul>
             </Meteor>
@@ -191,6 +192,7 @@ export default {
                 <ul class="VerList WurstVerList">
                     <li class="li2" v-for="(version, index) in WurstVerList" :key="index">
                         <a :href="version.browser_download_url" target="_blank">{{ version.name }}</a>
+                        <p>大小:{{ (version.size/(1024 * 1024)).toFixed(2) }}MB 最近更新时间:{{ version.updated_at }} 下载次数:{{ version.download_count }}</p>
                     </li>
                 </ul>
             </Wurst>
