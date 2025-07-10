@@ -202,6 +202,7 @@ body {
 }
 /* 弹窗消息 */
 .Message {
+  max-width: 30%;
   margin: 50px;
   bottom: 0;
   right: -100%;

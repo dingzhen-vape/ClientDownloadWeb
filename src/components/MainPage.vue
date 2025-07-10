@@ -176,7 +176,7 @@ export default {
 </script>
 <template>
     <div class="Message">
-        <p>你好我的朋友</p>
+        <p></p>
     </div>
     <!-- 中间 -->
     <div class="base">
@@ -229,6 +229,16 @@ export default {
                     <li>
                         <a title="爱发电" href="https://afdian.com/a/WurstCN-client?tab=home">
                             <img style="opacity: 1;" src="../assets/aifadian.svg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://meteorclient.com/" title="Meteor客户端官网">
+                            <img src="../assets/MeteorIcon.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.wurstclient.net/download/" title="Wurst客户端官网">
+                            <img src="../assets/Wurst.png" alt="">
                         </a>
                     </li>
                     <li>

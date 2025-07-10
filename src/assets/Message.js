@@ -6,6 +6,7 @@ export function sendMessage(value = "",delay = 1000){
         right: 0,
         duration: 2,
         ease: "power2",
+        overwrite:true,
         onComplete:()=>{
             setTimeout(()=>{
                 gsap.to(".Message",{
