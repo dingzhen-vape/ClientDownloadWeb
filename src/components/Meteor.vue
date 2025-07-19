@@ -1,4 +1,5 @@
 <script>
+import { playSound } from '@/assets/Message';
 import { gsap } from 'gsap';
 export default {
     data() {
@@ -8,12 +9,14 @@ export default {
     },
     methods: {
         Reset() {
+            playSound()
             this.outAnimations();
             document.querySelector(".Wurst-icon").style.pointerEvents = "auto";
             document.querySelector(".Refresh").style.pointerEvents = "auto";
 
         },
         Onclick() {
+            playSound()
             this.isShow = true;
             this.inAnimations();
             document.querySelector(".Wurst-icon").style.pointerEvents = "none";

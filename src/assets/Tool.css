@@ -1,7 +1,7 @@
 body {
-  background: #e7e7e7;
-  overflow-x: hidden;
-}
+    background: #ffffff;
+    overflow-x: hidden;
+  }
 .base {
   overflow: hidden;
   border-radius: 2vw;
@@ -87,6 +87,7 @@ body {
 /* End */
 /* 按钮 */
 .Button {
+  user-select: none;
   position: relative;
   transform-origin: center;
   width: 7vw;
@@ -133,6 +134,19 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
+}
+.AutoUpdate {
+  position: absolute;
+  width: auto;
+  height: auto;
+  right: 0;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+.AutoUpdate h1 {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.5vw;
 }
 /* 版本列表 */
 .VerList {
@@ -231,8 +245,9 @@ body {
   left: 1vw;
   border-radius: 2vw;
 }
-.detail{
+.detail {
+  background: #7676762c;
   padding: 10px;
   border-radius: 0.5vw;
-  border:5px solid #0000001e;
+  border: 5px solid #0000001e;
 }

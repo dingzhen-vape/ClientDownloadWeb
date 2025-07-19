@@ -1,5 +1,5 @@
 <script>
-import { sendMessage } from '@/assets/Message';
+import { playSound, sendMessage } from '@/assets/Message';
 import Meteor from './Meteor.vue';
 import Wurst from './WurstCN.vue';
 import axios from 'axios';
@@ -9,7 +9,8 @@ export default {
         return {
             MeteorVerList: [],
             WurstVerList: [],
-            LastTime: 0
+            LastTime: 0,
+            AutoUpdate: false,
         }
     },
     components: {
@@ -20,10 +21,15 @@ export default {
         InitList() {
             //初始化
             var loaclVer = localStorage.getItem("Versions")
+            const AutoUpdate = localStorage.getItem("AutoUpdate")
+            this.AutoUpdate = (AutoUpdate=="true") ? true : false;
+            
+
             if (loaclVer !== null) {
                 const LastTime = JSON.parse(loaclVer).LastTime
                 const MeteorList = JSON.parse(loaclVer).Meteor
                 const WurstList = JSON.parse(loaclVer).Wurst
+
                 this.MeteorVerList = MeteorList
                 this.WurstVerList = WurstList
                 this.LastTime = LastTime
@@ -34,6 +40,7 @@ export default {
         },
 
         async refresh() {
+            playSound()
             this.inAnimations()
         },
 
@@ -44,7 +51,28 @@ export default {
                 this.WurstVerList = (await this.getVersion("WurstCN")).data.assets;
                 this.LastTime = new Date().toLocaleString()
                 // console.log(MeteorVerList);
-
+                var loaclVer = localStorage.getItem("Versions")
+                if (loaclVer !== null) {
+                    loaclVer = JSON.parse(loaclVer)//转换成JSON格式方便读取
+                    // console.log(loaclVer.Wurst.length);
+                    // console.log(this.MeteorVerList.length);
+                    
+                    // console.log(this.WurstVerList.length);
+                    
+                    
+                    if (loaclVer.Wurst.length !== this.WurstVerList.length) {
+                        sendMessage("资源更新成功! Wurst有新的汉化更新")
+                    }
+                    if (loaclVer.Meteor.length !== this.MeteorVerList.length) {
+                        sendMessage("资源更新成功! Meteor有新的汉化更新")
+                    }
+                    if (loaclVer.Wurst.length !== this.WurstVerList.length && loaclVer.Meteor.length !== this.MeteorVerList.length) {
+                        sendMessage("资源更新成功! Wurst和Meteor有新的汉化更新")
+                    }
+                    if (loaclVer.Wurst.length == this.WurstVerList.length && loaclVer.Meteor.length == this.MeteorVerList.length) {
+                        sendMessage("好像目前没有任何更新...")
+                    }
+                }
                 //存储版本资源列表到本地缓存
                 var Versions = {
                     LastTime: new Date().toLocaleString(),
@@ -53,10 +81,9 @@ export default {
                 }
                 localStorage.setItem("Versions", JSON.stringify(Versions))
                 this.listOutAnimation()
-                sendMessage("获取资源成功")
 
             } catch (error) {
-                sendMessage(`获取失败了QAQ,报错信息:${error}`, 1000)
+                sendMessage(`获取最新版本失败(´Ａ｀。),报错信息:${error}`, 1000)
                 this.outAnimations()
 
             }
@@ -165,12 +192,22 @@ export default {
             })
         },
         showInfo() {
-            sendMessage("本网站仅供学习使用，网站代码与客户端均已开源!"+
-            "因为所有链接都是github直连所以速度有点慢", 5000)
+            playSound()
+            sendMessage("本网站仅供学习使用，网站代码与客户端均已开源!" +
+                "因为所有链接都是github直连所以速度有点慢", 5000)
+        },
+        ToggleAutoUpdate() {
+            playSound()
+            this.AutoUpdate = !this.AutoUpdate;
+            localStorage.setItem("AutoUpdate", this.AutoUpdate)
         }
     },
     mounted() {
         this.InitList()
+        if (this.AutoUpdate) {
+            this.refresh()
+        }
+
     }
 }
 </script>
@@ -245,6 +282,9 @@ export default {
                         <h1 style="font-size: 20px">上次更新时间:{{ LastTime }}</h1>
                     </li>
                 </ul>
+            </div>
+            <div @click="ToggleAutoUpdate" title="每次打开网页都会自动刷新" class="Button AutoUpdate">
+                <h1>自动更新 {{ AutoUpdate ? "开" : "关" }}</h1>
             </div>
         </div>
     </div>
