@@ -80,6 +80,19 @@ export default {
                 duration: 1,
                 ease: "power2"
             })
+            gsap.fromTo(".I18nPluginVerList", {
+                opacity: 0,
+                left: "-100%",
+                height: "100%",
+                duration: 1,
+                ease: "power2"
+            }, {
+                opacity: 1,
+                height: "80%",
+                left: "50%",
+                duration: 1,
+                ease: "power2"
+            })
         },
         outAnimations() {
             gsap.to(".WurstBase", {
@@ -130,6 +143,19 @@ export default {
                 ease: "power2"
             }, {
                 opacity: 0,
+                height: "100%",
+                left: "-100%",
+                duration: 1,
+                ease: "sine"
+            })
+            gsap.fromTo(".I18nPluginVerList", {
+                opacity: 1,
+                left: "50%",
+                height: "80%",
+                duration: 1,
+                ease: "power2"
+            }, {
+                opacity:0,
                 height: "100%",
                 left: "-100%",
                 duration: 1,

@@ -180,6 +180,7 @@ body {
 /* 自定义 */
 .MeteorVerList {
   position: absolute;
+  width: 50%;
   left: -100%;
   bottom: 0;
 }
@@ -187,6 +188,19 @@ body {
   background-color: #a670cd00;
 }
 .MeteorVerList::-webkit-scrollbar-thumb {
+  background-color: #a65eda;
+  border-radius: 5px; /* 滑块的圆角 */
+}
+.I18nPluginVerList {
+  position: absolute;
+  width: 50%;
+  left: -100%;
+  bottom: 0;
+}
+.I18nPluginVerList::-webkit-scrollbar {
+  background-color: #a670cd00;
+}
+.I18nPluginVerList::-webkit-scrollbar-thumb {
   background-color: #a65eda;
   border-radius: 5px; /* 滑块的圆角 */
 }

@@ -9,6 +9,7 @@ export default {
         return {
             MeteorVerList: [],
             WurstVerList: [],
+            MeteorI18nPluginVerList: [],
             LastTime: 0,
             AutoUpdate: false,
         }
@@ -29,7 +30,8 @@ export default {
                 const LastTime = JSON.parse(loaclVer).LastTime
                 const MeteorList = JSON.parse(loaclVer).Meteor
                 const WurstList = JSON.parse(loaclVer).Wurst
-
+                const PluginList = JSON.parse(loaclVer).Plugin
+                this.MeteorI18nPluginVerList = PluginList
                 this.MeteorVerList = MeteorList
                 this.WurstVerList = WurstList
                 this.LastTime = LastTime
@@ -49,35 +51,17 @@ export default {
                 // 获取版本资源列表
                 this.MeteorVerList = (await this.getVersion("MeteorCN")).data.assets;
                 this.WurstVerList = (await this.getVersion("WurstCN")).data.assets;
+                this.MeteorI18nPluginVerList = (await this.getVersion("Meteor-I18n-Support-plugin")).data.assets;
+                console.log(this.MeteorI18nPluginVerList.length);
+                
                 this.LastTime = new Date().toLocaleString()
-                // console.log(MeteorVerList);
                 var loaclVer = localStorage.getItem("Versions")
-                if (loaclVer !== null) {
-                    loaclVer = JSON.parse(loaclVer)//转换成JSON格式方便读取
-                    // console.log(loaclVer.Wurst.length);
-                    // console.log(this.MeteorVerList.length);
-                    
-                    // console.log(this.WurstVerList.length);
-                    
-                    
-                    if (loaclVer.Wurst.length !== this.WurstVerList.length) {
-                        sendMessage("资源更新成功! Wurst有新的汉化更新")
-                    }
-                    if (loaclVer.Meteor.length !== this.MeteorVerList.length) {
-                        sendMessage("资源更新成功! Meteor有新的汉化更新")
-                    }
-                    if (loaclVer.Wurst.length !== this.WurstVerList.length && loaclVer.Meteor.length !== this.MeteorVerList.length) {
-                        sendMessage("资源更新成功! Wurst和Meteor有新的汉化更新")
-                    }
-                    if (loaclVer.Wurst.length == this.WurstVerList.length && loaclVer.Meteor.length == this.MeteorVerList.length) {
-                        sendMessage("好像目前没有任何更新...")
-                    }
-                }
                 //存储版本资源列表到本地缓存
                 var Versions = {
                     LastTime: new Date().toLocaleString(),
                     Meteor: this.MeteorVerList,
-                    Wurst: this.WurstVerList
+                    Wurst: this.WurstVerList,
+                    Plugin: this.MeteorI18nPluginVerList
                 }
                 localStorage.setItem("Versions", JSON.stringify(Versions))
                 this.listOutAnimation()
@@ -220,13 +204,23 @@ export default {
         <div class="main">
             <Meteor>
                 <ul class="VerList MeteorVerList">
+                    <h1 style="color: red;">停止更新</h1>
                     <li v-for="(version, index) in MeteorVerList" :key="index">
                         <div class="detail">
                             <a :href="version.browser_download_url" target="_blank">{{ version.name }}</a>
                             <p>大小:{{ (version.size / (1024 * 1024)).toFixed(2) }}MB 最近更新时间:{{ version.updated_at }}
                                 下载次数:{{ version.download_count }}</p>
                         </div>
-
+                    </li>
+                </ul>
+                <ul class="VerList I18nPluginVerList">
+                    <h1>Meteor I18n(汉化) 支持插件</h1>
+                    <li v-for="(version, index) in MeteorI18nPluginVerList" :key="index">
+                        <div class="detail">
+                            <a :href="version.browser_download_url" target="_blank">{{ version.name }}</a>
+                            <p>大小:{{ (version.size / (1024 * 1024)).toFixed(2) }}MB 最近更新时间:{{ version.updated_at }}
+                                下载次数:{{ version.download_count }}</p>
+                        </div>
                     </li>
                 </ul>
             </Meteor>

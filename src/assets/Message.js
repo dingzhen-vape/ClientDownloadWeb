@@ -10,7 +10,7 @@ export function sendMessage(value = "", delay = 1000) {
         onComplete: () => {
             setTimeout(() => {
                 gsap.to(".Message", {
-                    right: "-100%",
+                    right: "-50%",
                     duration: 2,
                     ease: "sine"
                 })
